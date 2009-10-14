@@ -1,6 +1,10 @@
-Currently takes one option when initialised, :group. This allows you to specify the group under which your logs appear - see "Nested grouping" at http://getfirebug.com/logging.html for an example.
+Currently takes one option when initialised, :group. This allows you 
+to specify the group under which your logs appear - see 
+"Nested grouping" at http://getfirebug.com/logging.html for an example.
 
-To log, set env['firebug.logs'] to a list of pairs. The first element in each pair should be the log level: :info, :warn, :debug or :error. The second element should be the message.
+To log, set env['firebug.logs'] to a list of pairs. The first element 
+in each pair should be the log level: :info, :warn, :debug or :error. 
+The second element should be the message.
 
 For example
 
