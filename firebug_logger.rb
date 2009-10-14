@@ -1,3 +1,5 @@
+# See also http://github.com/simonjefford/rack_firebug_logger
+# for this middleware + tests + a rails plugin
 class FirebugLogger
   def initialize(app, options = {})
     @app = app
