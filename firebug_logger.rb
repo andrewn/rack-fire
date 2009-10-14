@@ -12,7 +12,7 @@ class FirebugLogger
 
   def _call(env)
     status, headers, body = @app.call(env)
-    return [status, headers, body] unless (headers["Content-Type"] =~ /html/)
+    return [status, headers, body] if !(headers["Content-Type"] =~ /html/)
     return [status, headers, body] unless env['firebug.logs']
     response = Rack::Response.new([], status, headers)
     js = generate_js(env['firebug.logs'])
@@ -35,6 +35,7 @@ class FirebugLogger
     end
     end_group(js)
     js << "</script>"
+    js << "</body>"
     js.join("\n")
   end
 
