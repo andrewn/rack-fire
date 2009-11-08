@@ -12,8 +12,7 @@ class FirebugLogger
 
   def _call(env)
     status, headers, body = @app.call(env)
-    return [status, headers, body] unless (headers["Content-Type"] =~ /html/)
-    return [status, headers, body] unless env['firebug.logs']
+    return [status, headers, body] unless (headers["Content-Type"] =~ /html/ && env['firebug.logs'])
     response = Rack::Response.new([], status, headers)
     js = generate_js(env['firebug.logs'])
     body.each do |line|
@@ -26,7 +25,7 @@ class FirebugLogger
   private
 
   def generate_js(logs)
-    js = ["<script>"]
+    js = ["<script type=\"text/javascript\">"]
     start_group(js)
     logs.each do |level, log|
       level = sanitise_level(level)
