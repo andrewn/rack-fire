@@ -1,16 +1,12 @@
 # See also http://github.com/simonjefford/rack_firebug_logger
 # for this middleware + tests + a rails plugin
-class FirebugLogger
+class Fire
   def initialize(app, options = {})
     @app = app
     @options = options
   end
 
   def call(env)
-    dup._call(env)
-  end
-
-  def _call(env)
     status, headers, body = @app.call(env)
     return [status, headers, body] unless (headers["Content-Type"] =~ /html/ && env['firebug.logs'])
     response = Rack::Response.new([], status, headers)
